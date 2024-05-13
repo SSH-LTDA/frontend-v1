@@ -10,7 +10,7 @@ export default {
   plugins: [],
 }
 
-module.exports = {
+/* module.exports = {
   theme: {
     colors: {
       zinc: {
@@ -19,4 +19,4 @@ module.exports = {
       },
     },
   },
-};
+}; */
