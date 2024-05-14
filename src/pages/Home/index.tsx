@@ -7,6 +7,7 @@ function Index() {
     <>
       <Header />
       <Outlet />
+      {/*  TODO here set Footer component*/}
     </>
   );
 }

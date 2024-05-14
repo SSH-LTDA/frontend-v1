@@ -10,7 +10,7 @@ type Props = {
 
 function Row({ align, justify, fullWidth, className, children }: Props) {
   return (
-    <div className={`flex ` + ` ${align}` + ` ${justify}` + fullWidth && " w-full" + ` ${className}`}>{children}</div>
+    <div className={`flex` + ` ${align}` + ` ${justify}` + fullWidth && " w-full" + ` ${className}`}>{children}</div>
   );
 }
 
