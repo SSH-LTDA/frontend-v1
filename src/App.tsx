@@ -1,14 +1,26 @@
-import React from 'react';
-import ReservationForm from './components/ReservationForm/ReservationForm';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 
-const App: React.FC = () => {
+import Home from "./pages/Home";
+import ReservationForm from "./components/ReservationForm/ReservationForm.tsx";
+import Rooms from "./pages/Rooms";
+import Facilities from "./pages/Facilities";
+import Contact from "./pages/Contact";
+import HomeContent from "./pages/Home/HomeContent.tsx";
+
+function App() {
   return (
-    <div>
-      <h1>Gerenciamento de Reservas</h1>
-      <ReservationForm />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}>
+        <Route path="" element={<HomeContent />} />
+        <Route path="facilities" element={<Facilities />} />
+        <Route path="rooms" element={<Rooms />} />
+        <Route path="contact-us" element={<Contact />} />
+      </Route>
+      <Route path="/reservation-form" element={<ReservationForm />} />
+    </Routes>
   );
-};
+}
 
 export default App;
 
