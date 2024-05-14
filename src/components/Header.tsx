@@ -53,7 +53,9 @@ function Header() {
   return (
     <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex relative z-0 flex-wrap  p-10`}>
       {isContactUsScreen ? (
-        <div className="h-[450px] bg-[#886023] w-full absolute z-[-2px] top-0 left-0"></div>
+        <div className="h-[450px] bg-[#886023] w-full absolute z-[-2px] top-0 left-0 flex items-center justify-center font-bold text-white text-7xl">
+          Contate-nos
+        </div>
       ) : (
         <img
           src={Paths[pathname as keyof typeof Paths]}
