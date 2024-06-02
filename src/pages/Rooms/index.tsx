@@ -21,12 +21,12 @@ import estacionamento17 from '../../assets/estacionamento17.jpg';
 import estacionamento18 from '../../assets/estacionamento18.jpg';
 
 const rooms = [
-  { title: 'Domo', images: [domo1, domo2, domo3], price: 999 },
-  { title: 'Charrua (Bus)', images: [charrua4, charrua5, charrua6], price: 123 },
-  { title: 'Suíte Com Cozinha', images: [suite7, suite8, suite9], price: 456 },
-  { title: 'Chalé Família', images: [chale10, chale11, chale12], price: 789 },
-  { title: 'Cabana', images: [cabana13, cabana14, cabana15], price: 1011 },
-  { title: 'Estacionamento Para Overlanders', images: [estacionamento16, estacionamento17, estacionamento18], price: 1213 }
+  { title: 'Domo', images: [domo1, domo2, domo3], price: 590, beds: 1, guests: 3, description: 'Descrição do Domo', amenities: ['Wi-Fi', 'TV', 'Ducha', 'Ar-condicionado', 'Toalhas', 'Frigobar', 'Cozinha'] },
+  { title: 'Charrua (Bus)', images: [charrua4, charrua5, charrua6], price: 490, beds: 1, guests: 2, description: 'Descrição do Charrua', amenities: ['Wi-Fi', 'TV', 'Ar-condicionado', 'Ducha', 'Banheira', 'Cozinha', 'Toalhas'] },
+  { title: 'Suíte Com Cozinha', images: [suite7, suite8, suite9], price: 390, beds: 2, guests: 3, description: 'Descrição da Suíte', amenities: ['Wi-Fi', 'TV', 'Cozinha', 'Ar-condicionado', 'Toalhas'] },
+  { title: 'Chalé Família', images: [chale10, chale11, chale12], price: 590, beds: 3, guests: 5, description: 'Descrição do Chalé', amenities: ['Wi-Fi', 'TV', 'Ar-condicionado', 'Cozinha', 'Toalhas'] },
+  { title: 'Cabana', images: [cabana13, cabana14, cabana15], price: 490, beds: 2, guests: 3, description: 'Descrição da Cabana', amenities: ['Wi-Fi', 'Ar-condicionado', 'TV', 'Toalhas', 'Cozinha'] },
+  { title: 'Estacionamento Para Overlanders', images: [estacionamento16, estacionamento17, estacionamento18], price: 100, beds: 0, guests: 4, description: 'Descrição do Estacionamento', amenities: ['Wi-Fi', 'Ducha'] }
 ];
 
 const Rooms: React.FC = () => {
