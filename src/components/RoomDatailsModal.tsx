@@ -3,6 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import { useNavigate } from "react-router-dom";
 import { FaTimes, FaBed, FaUser, FaWifi, FaTv, FaShower, FaSnowflake, FaCheck } from "react-icons/fa";
 import { MdBathtub, MdLocalLaundryService } from "react-icons/md";
 import { LuRefrigerator } from "react-icons/lu";
@@ -28,6 +29,7 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
   const [checkOutTime, setCheckOutTime] = useState<string>("");
 
   const modalRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -42,6 +44,19 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [onClose]);
+
+  const handleConfirm = () => {
+    navigate("/payment-form", {
+      state: {
+        room,
+        checkInDate,
+        checkOutDate,
+        checkInTime,
+        checkOutTime,
+        image: room.images[0]  // Enviando a primeira imagem da acomodação
+      },
+    });
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 modal-active">
@@ -117,8 +132,8 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
             </div>
           </div>
           <button
-            onClick={onClose}
-            className="bg-[#886023] text-white px-4 py-2 rounded hover:bg-[#64491f] flex items-center"
+            onClick={handleConfirm}
+            className="bg-[#886023] text-white px-4 py-2 mt-4 rounded hover:bg-[#64491f] flex items-center"
           >
             <FaCheck className="mr-2" /> Confirmar
           </button>
@@ -144,8 +159,8 @@ const getAmenityIcon = (amenity: string) => {
       return <MdLocalLaundryService />;
     case "Cozinha":
       return <PiForkKnifeFill />;
-      case "Banheira":
-        return <MdBathtub />;
+    case "Banheira":
+      return <MdBathtub />;
     default:
       return null;
   }

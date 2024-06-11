@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RoomCard from '../../components/RoomCard';
 
+
 import domo1 from '../../assets/domo1.jpeg';
 import domo2 from '../../assets/domo2.jpeg';
 import domo3 from '../../assets/domo3.jpeg';
