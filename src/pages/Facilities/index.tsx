@@ -3,7 +3,7 @@ import { FaWifi, FaTv, FaShower, FaSnowflake } from "react-icons/fa";
 import { MdBathtub, MdLocalLaundryService } from "react-icons/md";
 import { LuRefrigerator } from "react-icons/lu";
 import { PiForkKnifeFill } from "react-icons/pi";
-import Facility from './Facility';
+import Facility from '../../components/Facility';
 
 import wifiImage from "../../assets/wifi.jpg";
 import tvImage from "../../assets/tv.jpg";
