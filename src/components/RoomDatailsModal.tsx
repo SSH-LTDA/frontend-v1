@@ -46,7 +46,7 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
   }, [onClose]);
 
   const handleConfirm = () => {
-    navigate("/payment-form", {
+    navigate("/payment", {
       state: {
         room,
         checkInDate,
@@ -60,7 +60,7 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div ref={modalRef} className="bg-white rounded-lg p-8 w-full max-w-3xl max-h-full overflow-y-auto">
+      <div ref={modalRef} className="bg-white h-3/4 rounded-lg p-8 w-full max-w-3xl max-h-full overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold">{room.title}</h2>
           <button onClick={onClose} className="text-gray-600 hover:text-gray-900">
