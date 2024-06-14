@@ -53,14 +53,14 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
         checkOutDate,
         checkInTime,
         checkOutTime,
-        image: room.images[0]  // Enviando a primeira imagem da acomodação
+        image: room.images[0], // Enviando a primeira imagem da acomodação
       },
     });
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 modal-active">
-      <div ref={modalRef} className="bg-white rounded-lg p-8 w-full max-w-md overflow-y-auto">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div ref={modalRef} className="bg-white rounded-lg p-8 w-full max-w-3xl max-h-full overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold">{room.title}</h2>
           <button onClick={onClose} className="text-gray-600 hover:text-gray-900">

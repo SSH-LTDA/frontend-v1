@@ -19,7 +19,7 @@ function App() {
           <Route path="contact-us" element={<Contact />} />
         </Route>
         <Route path="/reservation-form" element={<ReservationForm />} />
-        <Route path="/payment-form" element={<PaymentForm />} />
+        <Route path="/payment" element={<PaymentForm />} />
       </Routes>
   );
 }
