@@ -1,5 +1,6 @@
 import React from "react";
 import HomeCard from "../../components/HomeCard";
+import Testimonials from "../../components/Testimonials";
 import deluxeRoom from "../../assets/deluxeRoom.jpeg"
 import beach from "../../assets/beach.jpeg"
 
@@ -19,6 +20,7 @@ function HomeContent() {
         description="Amamos a vida na praia. Estar perto do oceano com acesso a uma praia de areia infinita garante um estado de espírito descontraído. Parece que o tempo parou olhando o oceano."
         image={beach}
       />
+      <Testimonials />
     </div>
   );
 }
