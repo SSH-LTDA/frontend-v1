@@ -44,7 +44,7 @@ function Header() {
 
   return (
     <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex relative z-0 flex-wrap`}>
-      <nav className="w-full h-[17.5vh] bg-white flex justify-evenly z-10 shadow-xl">
+      <nav className="w-full h-[15.5vh] bg-white flex justify-evenly z-10 shadow-xl">
         <img
           src="https://static.wixstatic.com/media/b87f83_9f4625b043a944daaf5fddefc7d73d0e~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_auto/logo-pousada-quinta-do-ypua.png"
           alt="Logo Quinta do Ypuã"
@@ -59,7 +59,7 @@ function Header() {
         </ul>
       </nav>
       {isContactUsScreen ? (
-        <div className="h-[450px] bg-[#886023] w-full absolute z-[-2px] top-0 left-0 flex items-center justify-center font-bold text-white text-7xl">
+        <div className="h-[100px] bg-[#886023] w-full relative z-[-2px] top-0 left-0 flex items-center justify-center font-bold text-white text-6xl">
           Contate-nos
         </div>
       ) : (
