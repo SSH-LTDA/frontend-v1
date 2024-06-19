@@ -14,9 +14,9 @@ function Footer() {
         </div>
         <div>
           <ul className="h-full flex flex-col justify-between font-semibold">
-            <li className="cursor-pointer">About Us</li>
-            <li className="cursor-pointer">Contact</li>
-            <li className="cursor-pointer">Terms and Conditions</li>
+            <li className="cursor-pointer">Contato</li>
+            <li className="cursor-pointer">Sobre nós</li>
+            <li className="cursor-pointer">Termos e Condições</li>
           </ul>
         </div>
         <div>

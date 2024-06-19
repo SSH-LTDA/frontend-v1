@@ -5,11 +5,14 @@ interface HomeCardProps {
   title: string;
   description: string;
   image: string;
+  isReverse?: boolean;
 }
 
-const HomeCard: React.FC<HomeCardProps> = ({ title, description, image }) => {
+const HomeCard: React.FC<HomeCardProps> = ({ title, description, image, isReverse }) => {
   return (
-    <Row className="w-[85%] mx-auto my-20 flex justify-between border-l-2 border-[#14274A] pl-6">
+    <Row
+      className={`w-[85vw] mx-auto my-20 flex justify-between border-[#14274A] max-[768px]:w-[95vw] ${isReverse ? "border-l-2 pl-6" : "flex-row-reverse border-r-2 pr-6 border-[#14274A]"} `}
+    >
       <div className="w-[48%] my-auto">
         <h3 className="text-5xl font-bold mb-2">{title}</h3>
         <p className="text-lg my-5">{description}</p>

@@ -25,8 +25,6 @@ interface RoomDetailsModalProps {
 const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) => {
   const [checkInDate, setCheckInDate] = useState<Date | null>(null);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
-  const [checkInTime, setCheckInTime] = useState<string>("");
-  const [checkOutTime, setCheckOutTime] = useState<string>("");
 
   const modalRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -51,8 +49,6 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
         room,
         checkInDate,
         checkOutDate,
-        checkInTime,
-        checkOutTime,
         image: room.images[0], // Enviando a primeira imagem da acomodação
       },
     });
@@ -107,26 +103,6 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
                 selected={checkOutDate}
                 onChange={(date: Date) => setCheckOutDate(date)}
                 dateFormat="dd/MM/yyyy"
-                className="border p-2 w-full rounded"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div>
-              <label className="block mb-2">Hora de Check-in</label>
-              <input
-                type="time"
-                value={checkInTime}
-                onChange={(e) => setCheckInTime(e.target.value)}
-                className="border p-2 w-full rounded"
-              />
-            </div>
-            <div>
-              <label className="block mb-2">Hora de Check-out</label>
-              <input
-                type="time"
-                value={checkOutTime}
-                onChange={(e) => setCheckOutTime(e.target.value)}
                 className="border p-2 w-full rounded"
               />
             </div>

@@ -1,33 +1,91 @@
-import React, { useState } from 'react';
-import RoomCard from '../../components/RoomCard';
-
-
-import domo1 from '../../assets/domo1.jpeg';
-import domo2 from '../../assets/domo2.jpeg';
-import domo3 from '../../assets/domo3.jpeg';
-import charrua4 from '../../assets/charrua4.jpeg';
-import charrua5 from '../../assets/charrua5.jpeg';
-import charrua6 from '../../assets/charrua6.jpeg';
-import suite7 from '../../assets/suite7.jpg';
-import suite8 from '../../assets/suite8.jpg';
-import suite9 from '../../assets/suite9.jpg';
-import chale10 from '../../assets/chale10.jpg';
-import chale11 from '../../assets/chale11.jpg';
-import chale12 from '../../assets/chale12.jpg';
-import cabana13 from '../../assets/cabana13.jpg';
-import cabana14 from '../../assets/cabana14.jpg';
-import cabana15 from '../../assets/cabana15.jpg';
-import estacionamento16 from '../../assets/estacionamento16.jpg';
-import estacionamento17 from '../../assets/estacionamento17.jpg';
-import estacionamento18 from '../../assets/estacionamento18.jpg';
+import React, { useState } from "react";
+import RoomCard from "../../components/RoomCard";
 
 const rooms = [
-  { title: 'Domo', images: [domo1, domo2, domo3], price: 590, beds: 1, guests: 3, description: 'Descrição do Domo', amenities: ['Wi-Fi', 'TV', 'Ducha', 'Ar-condicionado', 'Toalhas', 'Frigobar', 'Cozinha'] },
-  { title: 'Charrua (Bus)', images: [charrua4, charrua5, charrua6], price: 490, beds: 1, guests: 2, description: 'Descrição do Charrua', amenities: ['Wi-Fi', 'TV', 'Ar-condicionado', 'Ducha', 'Banheira', 'Cozinha', 'Toalhas'] },
-  { title: 'Suíte Com Cozinha', images: [suite7, suite8, suite9], price: 390, beds: 2, guests: 3, description: 'Descrição da Suíte', amenities: ['Wi-Fi', 'TV', 'Cozinha', 'Ar-condicionado', 'Toalhas'] },
-  { title: 'Chalé Família', images: [chale10, chale11, chale12], price: 590, beds: 3, guests: 5, description: 'Descrição do Chalé', amenities: ['Wi-Fi', 'TV', 'Ar-condicionado', 'Cozinha', 'Toalhas'] },
-  { title: 'Cabana', images: [cabana13, cabana14, cabana15], price: 490, beds: 2, guests: 3, description: 'Descrição da Cabana', amenities: ['Wi-Fi', 'Ar-condicionado', 'TV', 'Toalhas', 'Cozinha'] },
-  { title: 'Estacionamento Para Overlanders', images: [estacionamento16, estacionamento17, estacionamento18], price: 100, beds: 0, guests: 4, description: 'Descrição do Estacionamento', amenities: ['Wi-Fi', 'Ducha'] }
+  {
+    title: "Domo",
+    images: [
+      "https://static.wixstatic.com/media/b87f83_0db328063a8c4b4ea1bb3dff437e8e46~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_0db328063a8c4b4ea1bb3dff437e8e46~mv2.jpeg",
+      "https://static.wixstatic.com/media/b87f83_e89ecfdd2aa84fa0812f6c8789225f20~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_e89ecfdd2aa84fa0812f6c8789225f20~mv2.jpeg",
+      "https://static.wixstatic.com/media/b87f83_928e441d10b74b3ba45cf455e8c12b0e~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_928e441d10b74b3ba45cf455e8c12b0e~mv2.jpeg",
+      "https://static.wixstatic.com/media/b87f83_3984ca8f5d97472ebe0f78082100ec3a~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_3984ca8f5d97472ebe0f78082100ec3a~mv2.jpeg",
+    ],
+    price: 590,
+    beds: 1,
+    guests: 3,
+    description: "Descrição do Domo",
+    amenities: ["Wi-Fi", "TV", "Ducha", "Ar-condicionado", "Toalhas", "Frigobar", "Cozinha"],
+  },
+  {
+    title: "Charrua (Bus)",
+    images: [
+      "https://static.wixstatic.com/media/b87f83_5580c08771c841089ccc440a82c2f298~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_5580c08771c841089ccc440a82c2f298~mv2.jpeg",
+      "https://static.wixstatic.com/media/b87f83_c72880f87ec948868f23310a25b1a518~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_c72880f87ec948868f23310a25b1a518~mv2.jpeg",
+      "https://static.wixstatic.com/media/b87f83_5a54d8612da145a99bb18d7b3a22ff73~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_5a54d8612da145a99bb18d7b3a22ff73~mv2.jpeg",
+      "https://static.wixstatic.com/media/b87f83_61cd9f30603c4c0782d0dd8d262c0fcb~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_61cd9f30603c4c0782d0dd8d262c0fcb~mv2.jpeg",
+    ],
+    price: 490,
+    beds: 1,
+    guests: 2,
+    description: "Descrição do Charrua",
+    amenities: ["Wi-Fi", "TV", "Ar-condicionado", "Ducha", "Banheira", "Cozinha", "Toalhas"],
+  },
+  {
+    title: "Suíte Com Cozinha",
+    images: [
+      "https://static.wixstatic.com/media/b87f83_bfc66e6435f34c23bfd60e2fccb3d499~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_bfc66e6435f34c23bfd60e2fccb3d499~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_3b4acd8d82e342469093e71fb29a3632~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_3b4acd8d82e342469093e71fb29a3632~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_de7918ffcf3947b6ba9b21ff2c56c40c~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_de7918ffcf3947b6ba9b21ff2c56c40c~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_0ba13b9dfa2c42058f578180254fbed8~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_0ba13b9dfa2c42058f578180254fbed8~mv2.jpg",
+    ],
+    price: 390,
+    beds: 2,
+    guests: 3,
+    description: "Descrição da Suíte",
+    amenities: ["Wi-Fi", "TV", "Cozinha", "Ar-condicionado", "Toalhas"],
+  },
+  {
+    title: "Chalé Família",
+    images: [
+      "https://static.wixstatic.com/media/b87f83_d943676e56f24781b4aad20256b75eef~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_d943676e56f24781b4aad20256b75eef~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_f06e8eb7ad634e22bd69badcc538be73~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_f06e8eb7ad634e22bd69badcc538be73~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_d3ae7c6f22ea4579bad3396eea56224f~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_d3ae7c6f22ea4579bad3396eea56224f~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_fd189730414e46d39003c5767b995e9b~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_fd189730414e46d39003c5767b995e9b~mv2.jpg",
+    ],
+    price: 590,
+    beds: 3,
+    guests: 5,
+    description: "Descrição do Chalé",
+    amenities: ["Wi-Fi", "TV", "Ar-condicionado", "Cozinha", "Toalhas"],
+  },
+  {
+    title: "Cabana",
+    images: [
+      "https://static.wixstatic.com/media/b87f83_23a56936773e4f7f812d0543c078138c~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_23a56936773e4f7f812d0543c078138c~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_1f34bed210534eb2a8b788773ee8cbdf~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_1f34bed210534eb2a8b788773ee8cbdf~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_aa9428b24cc74f5ab33e6b9ab8792361~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_aa9428b24cc74f5ab33e6b9ab8792361~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_760d26da720349d383ddf9d888fc180c~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_760d26da720349d383ddf9d888fc180c~mv2.jpg",
+    ],
+    price: 490,
+    beds: 2,
+    guests: 3,
+    description: "Descrição da Cabana",
+    amenities: ["Wi-Fi", "Ar-condicionado", "TV", "Toalhas", "Cozinha"],
+  },
+  {
+    title: "Estacionamento Para Overlanders",
+    images: [
+      "https://static.wixstatic.com/media/b87f83_f4b318355c704575a4a6917c1a2f7401~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_f4b318355c704575a4a6917c1a2f7401~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_1af509ade7ad46cc86b69b10fe2cd6c5~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_1af509ade7ad46cc86b69b10fe2cd6c5~mv2.jpg",
+      "https://static.wixstatic.com/media/b87f83_89da331062774e919f434b54a7272a8f~mv2.png/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_89da331062774e919f434b54a7272a8f~mv2.png",
+      "https://static.wixstatic.com/media/b87f83_a5851df51b1c4a338516426d8cb0c0fd~mv2.png/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_a5851df51b1c4a338516426d8cb0c0fd~mv2.png",
+    ],
+    price: 100,
+    beds: 0,
+    guests: 4,
+    description: "Descrição do Estacionamento",
+    amenities: ["Wi-Fi", "Ducha"],
+  },
 ];
 
 const Rooms: React.FC = () => {
@@ -39,25 +97,22 @@ const Rooms: React.FC = () => {
     setCurrentImageIndex(imageIndex);
   };
 
-  const currentRoom = rooms[currentRoomIndex];
-  const currentImage = currentRoom.images[currentImageIndex];
+  console.log(currentRoomIndex, currentImageIndex);
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold text-center mt-2 mb-4">Rooms</h1>
+      <h1 className="text-4xl font-bold text-center mt-2 mb-4">Acomodações</h1>
       <p className="text-center mb-12">
-        Each of our bright, light-flooded rooms come with everything you could possibly need for a comfortable stay. And yes,
-        comfort isn’t our only objective, we also value good design, sleek contemporary furnishing complemented
-        by the rich tones of nature’s palette as visible from our rooms’ sea-view windows and terraces.
+        Cada um dos nossos quartos luminosos e repletos de luz vem com tudo o que você precisa para uma estadia
+        confortável. E sim, o conforto não é o nosso único objetivo, também valorizamos o bom design, o mobiliário
+        contemporâneo elegante complementado por os ricos tons da paleta da natureza visíveis nas janelas e terraços com
+        vista para o mar dos nossos quartos.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {rooms.map((room, index) => (
           <RoomCard key={index} room={room} roomIndex={index} onCarouselChange={handleCarouselChange} />
         ))}
       </div>
-      <p className="text-center mt-4">
-        Vendo Atualmente: {currentRoom.title} - Imagem: {currentImage}
-      </p>
     </div>
   );
 };

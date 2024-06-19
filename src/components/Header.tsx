@@ -2,9 +2,9 @@ import React, { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 enum Paths {
-  "/" = "/assets/home.png",
-  "/facilities" = "/assets/facilities.png",
-  "/rooms" = "/assets/rooms.png",
+  "/" = "https://static.wixstatic.com/media/b87f83_56923e1bbcc74419b614629e2930f9f8~mv2.jpg/v1/fill/w_1079,h_748,q_90/b87f83_56923e1bbcc74419b614629e2930f9f8~mv2.webp",
+  "/facilities" = "https://pousada-quinta-do-ypua.hotelsantacatarina.com/data/Images/OriginalPhoto/4461/446163/446163441/image-laguna-pousada-quinta-do-ypua-21.JPEG",
+  "/rooms" = "https://turismo.laguna.sc.gov.br/uploads/sites/26/2023/07/WhatsApp-Image-2023-07-13-at-16.10.28-1200x675.jpeg",
 }
 
 type MenuLink = {
@@ -14,7 +14,7 @@ type MenuLink = {
 
 const menuLinks: MenuLink[] = [
   {
-    title: "Principal",
+    title: "Início",
     to: "/",
   },
   {
@@ -22,7 +22,7 @@ const menuLinks: MenuLink[] = [
     to: "/facilities",
   },
   {
-    title: "Quartos",
+    title: "Acomodações",
     to: "/rooms",
   },
   {
@@ -30,14 +30,6 @@ const menuLinks: MenuLink[] = [
     to: "/contact-us",
   },
 ];
-
-function GuestHouseName() {
-  return (
-    <div className="bg-[#E0B973] w-[225px] rounded-b-[50px] p-4 absolute top-0 left-40">
-      <p className="font-bold text-4xl text-center">Pousada Quinta do Ypuã</p>
-    </div>
-  );
-}
 
 function Header() {
   const location = useLocation();
@@ -51,7 +43,21 @@ function Header() {
   }, [pathname]);
 
   return (
-    <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex relative z-0 flex-wrap  p-10`}>
+    <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex relative z-0 flex-wrap`}>
+      <nav className="w-full h-[17.5vh] bg-white flex justify-evenly z-10 shadow-xl">
+        <img
+          src="https://static.wixstatic.com/media/b87f83_9f4625b043a944daaf5fddefc7d73d0e~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_auto/logo-pousada-quinta-do-ypua.png"
+          alt="Logo Quinta do Ypuã"
+          className="min-h-[80%] my-auto p-3 object-cover"
+        />
+        <ul className="flex gap-10 my-auto text-md font-serif">
+          {menuLinks.map((menuLink) => (
+            <li {...(pathname === menuLink.to && { className: "font-bold text-[#7E2726]" })}>
+              <Link to={menuLink.to}>{menuLink.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
       {isContactUsScreen ? (
         <div className="h-[450px] bg-[#886023] w-full absolute z-[-2px] top-0 left-0 flex items-center justify-center font-bold text-white text-7xl">
           Contate-nos
@@ -59,22 +65,11 @@ function Header() {
       ) : (
         <img
           src={Paths[pathname as keyof typeof Paths]}
-          className="brightness-75 absolute z-[-2px] top-0 left-0 max-h-[100%]"
+          className="absolute z-[-2] top-0 left-0 h-[100vh] object-cover"
           width="100%"
-          height={"100%"}
           alt=""
         />
       )}
-      <GuestHouseName />
-      <nav className="w-fit z-10 h-fit ml-auto mr-40">
-        <ul className="flex gap-20 text-white font-bold">
-          {menuLinks.map((menuLink) => (
-            <li {...(pathname === menuLink.to && { className: "underline underline-offset-4" })}>
-              <Link to={menuLink.to}>{menuLink.title}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 }

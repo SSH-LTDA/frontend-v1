@@ -39,7 +39,7 @@ const arrowStyles: CSSProperties = {
 const Testimonials = () => {
   return (
     <Row className="mx-auto my-20 flex-col justify-center items-center">
-      <h3 className="text-5xl font-bold mb-2 text-center">Testemunhas</h3>
+      <h3 className="text-5xl font-bold mb-2 text-center">Avaliações</h3>
       <Carousel
         autoPlay
         showArrows
