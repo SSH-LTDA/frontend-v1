@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
 import { FaTimes, FaBed, FaUser, FaWifi, FaTv, FaShower, FaSnowflake, FaCheck } from "react-icons/fa";
-import { MdBathtub, MdLocalLaundryService } from "react-icons/md";
+import { MdBathtub } from "react-icons/md";
 import { LuRefrigerator } from "react-icons/lu";
-import { PiForkKnifeFill } from "react-icons/pi";
+import { PiForkKnifeFill, PiTowel } from "react-icons/pi";
 
 interface RoomDetailsModalProps {
   room: {
@@ -73,7 +73,7 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
         <div className="mt-4">
           <p className="mb-4">{room.description}</p>
           <div className="flex items-center mb-4">
-            <FaBed className="mr-2" /> {room.beds} camas
+            <FaBed className="mr-2" /> {room.beds} {room.beds > 1 ? "Camas" : "Cama"}
           </div>
           <div className="flex items-center mb-4">
             <FaUser className="mr-2" /> Acomoda {room.guests} pessoas
@@ -131,8 +131,8 @@ const getAmenityIcon = (amenity: string) => {
       return <FaSnowflake />;
     case "Frigobar":
       return <LuRefrigerator />;
-    case "Toalha":
-      return <MdLocalLaundryService />;
+    case "Toalhas":
+      return <PiTowel />;
     case "Cozinha":
       return <PiForkKnifeFill />;
     case "Banheira":
