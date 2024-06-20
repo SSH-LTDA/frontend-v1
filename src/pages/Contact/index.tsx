@@ -42,7 +42,7 @@ const ContactPage: React.FC = () => {
               Ver Localização {"-->"}
             </a>
           </h3>
-          <h3 className="text-base mb-2 text-blue-600">Phone: (48) 99940-9732</h3>
+          <h3 className="text-base mb-2 text-blue-600">Telefone: (48) 99940-9732</h3>
           <h3 className="text-base mb-4 text-blue-600">Email: pousadaquintadoypua@gmail.com</h3>
           <p className="text-lg mb-4 font-bold text-[#886023]">
             Ou se preferir, envie-nos uma mensagem via WhatsApp
