@@ -50,9 +50,9 @@ function Header() {
           alt="Logo Quinta do Ypuã"
           className="min-h-[80%] my-auto p-3 object-cover"
         />
-        <ul className="flex gap-10 my-auto text-md font-serif">
+        <ul className="flex gap-10 my-auto text-md">
           {menuLinks.map((menuLink) => (
-            <li {...(pathname === menuLink.to && { className: "font-bold text-[#7E2726]" })}>
+            <li className="hover:text-[#d65b59]" {...(pathname === menuLink.to && { className: "font-extrabold text-[#7E2726]" })}>
               <Link to={menuLink.to}>{menuLink.title}</Link>
             </li>
           ))}
