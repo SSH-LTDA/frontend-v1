@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 enum Paths {
   "/" = "https://static.wixstatic.com/media/b87f83_56923e1bbcc74419b614629e2930f9f8~mv2.jpg/v1/fill/w_1079,h_748,q_90/b87f83_56923e1bbcc74419b614629e2930f9f8~mv2.webp",
@@ -33,6 +34,7 @@ const menuLinks: MenuLink[] = [
 
 function Header() {
   const location = useLocation();
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const pathname = useMemo(() => {
     return location.pathname;
@@ -44,22 +46,56 @@ function Header() {
 
   return (
     <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex relative z-0 flex-wrap`}>
-      <nav className="w-full h-[15.5vh] bg-white flex justify-evenly z-10 shadow-xl">
+      <nav className="w-full h-[15.5vh] bg-white flex justify-between items-center z-10 shadow-xl px-10">
         <img
           src="https://static.wixstatic.com/media/b87f83_9f4625b043a944daaf5fddefc7d73d0e~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_auto/logo-pousada-quinta-do-ypua.png"
           alt="Logo Quinta do Ypuã"
           className="min-h-[80%] my-auto p-3 object-cover"
         />
-        <ul className="flex gap-10 my-auto text-md">
-          {menuLinks.map((menuLink) => (
-            <li className="hover:text-[#d65b59]" {...(pathname === menuLink.to && { className: "font-extrabold text-[#7E2726]" })}>
-              <Link to={menuLink.to}>{menuLink.title}</Link>
+        <ul className="flex gap-10 text-md font-serif">
+          {menuLinks.map((menuLink, index) => (
+            <li key={index} {...(pathname === menuLink.to && { className: "font-bold text-[#7E2726]" })}>
+              <Link to={menuLink.to} className="hover:text-[#b3753c] transition-colors">
+                {menuLink.title}
+              </Link>
             </li>
           ))}
         </ul>
+        <div className="relative my-auto">
+          <FaUserCircle
+            size={40}
+            className="cursor-pointer text-[#b3753c] hover:text-[#886023] transition-colors"
+            onClick={() => setDropdownOpen(!isDropdownOpen)}
+          />
+          {isDropdownOpen && (
+            <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border rounded shadow-lg">
+              <Link
+                to="/login"
+                className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                onClick={() => setDropdownOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                onClick={() => setDropdownOpen(false)}
+              >
+                Cadastro
+              </Link>
+              <Link
+                to="/user-info"
+                className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                onClick={() => setDropdownOpen(false)}
+              >
+                Perfil
+              </Link>
+            </div>
+          )}
+        </div>
       </nav>
       {isContactUsScreen ? (
-        <div className="h-[100px] bg-[#886023] w-full relative z-[-2px] top-0 left-0 flex items-center justify-center font-bold text-white text-6xl">
+        <div className="h-[100px] bg-[#886023] w-full relative flex items-center justify-center font-bold text-white text-6xl">
           Contate-nos
         </div>
       ) : (
