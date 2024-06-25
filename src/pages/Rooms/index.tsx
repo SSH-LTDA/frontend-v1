@@ -14,7 +14,7 @@ const rooms = [
     beds: 1,
     guests: 3,
     description: "Descrição do Domo",
-    amenities: ["Wi-Fi", "TV", "Ducha", "Ar-condicionado", "Toalhas", "Frigobar", "Cozinha"],
+    amenities: ["wifi", "tv", "ducha", "arCondicionado", "toalhas", "frigobar", "cozinha"],
   },
   {
     title: "Charrua (Bus)",
@@ -28,7 +28,7 @@ const rooms = [
     beds: 1,
     guests: 2,
     description: "Descrição do Charrua",
-    amenities: ["Wi-Fi", "TV", "Ar-condicionado", "Ducha", "Banheira", "Cozinha", "Toalhas"],
+    amenities: ["wifi", "tv", "arCondicionado", "ducha", "banheira", "cozinha", "toalhas"],
   },
   {
     title: "Suíte Com Cozinha",
@@ -42,7 +42,7 @@ const rooms = [
     beds: 2,
     guests: 3,
     description: "Descrição da Suíte",
-    amenities: ["Wi-Fi", "TV", "Cozinha", "Ar-condicionado", "Toalhas"],
+    amenities: ["wifi", "tv", "cozinha", "arCondicionado", "toalhas"],
   },
   {
     title: "Chalé Família",
@@ -56,7 +56,7 @@ const rooms = [
     beds: 3,
     guests: 5,
     description: "Descrição do Chalé",
-    amenities: ["Wi-Fi", "TV", "Ar-condicionado", "Cozinha", "Toalhas"],
+    amenities: ["wifi", "tv", "arCondicionado", "cozinha", "toalhas"],
   },
   {
     title: "Cabana",
@@ -70,7 +70,7 @@ const rooms = [
     beds: 2,
     guests: 3,
     description: "Descrição da Cabana",
-    amenities: ["Wi-Fi", "Ar-condicionado", "TV", "Toalhas", "Cozinha"],
+    amenities: ["wifi", "arCondicionado", "tv", "toalhas", "cozinha"],
   },
   {
     title: "Estacionamento Para Overlanders",
@@ -84,7 +84,7 @@ const rooms = [
     beds: 0,
     guests: 4,
     description: "Descrição do Estacionamento",
-    amenities: ["Wi-Fi", "Ducha"],
+    amenities: ["wifi", "ducha"],
   },
 ];
 

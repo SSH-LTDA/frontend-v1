@@ -7,9 +7,9 @@ import Facilities from './pages/Facilities';
 import Contact from './pages/Contact';
 import HomeContent from './pages/Home/HomeContent';
 import PaymentForm from './components/PaymentForm';
-import RegisterForm from './pages/auth/register';
-import UserInfo from './pages/user/UserProfile';
-import LoginPage from './pages/auth/login';
+import RegisterForm from './pages/Auth/register';
+import UserInfo from './pages/User/UserProfile';
+import LoginPage from './pages/Auth/login';
 
 function App() {
   return (

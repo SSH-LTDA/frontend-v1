@@ -45,8 +45,8 @@ function Header() {
   }, [pathname]);
 
   return (
-    <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex relative z-0 flex-wrap`}>
-      <nav className="w-full h-[15.5vh] bg-white flex justify-between items-center z-10 shadow-xl px-10">
+    <header className={`${isContactUsScreen ? "h-auto" : "h-[100vh]"} flex z-0 flex-wrap`}>
+      <nav className="w-full h-[15.5vh] bg-white flex justify-around items-center z-10 shadow-xl px-10">
         <img
           src="https://static.wixstatic.com/media/b87f83_9f4625b043a944daaf5fddefc7d73d0e~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_auto/logo-pousada-quinta-do-ypua.png"
           alt="Logo Quinta do Ypuã"
@@ -61,7 +61,7 @@ function Header() {
             </li>
           ))}
         </ul>
-        <div className="relative my-auto">
+        <div className="relative">
           <FaUserCircle
             size={40}
             className="cursor-pointer text-[#b3753c] hover:text-[#886023] transition-colors"
@@ -69,27 +69,43 @@ function Header() {
           />
           {isDropdownOpen && (
             <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border rounded shadow-lg">
-              <Link
-                to="/login"
-                className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
-                onClick={() => setDropdownOpen(false)}
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
-                onClick={() => setDropdownOpen(false)}
-              >
-                Cadastro
-              </Link>
-              <Link
-                to="/user-info"
-                className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
-                onClick={() => setDropdownOpen(false)}
-              >
-                Perfil
-              </Link>
+              {localStorage.getItem("userData") ? (
+                <>
+                  <Link
+                    to="/user-info"
+                    className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Perfil
+                  </Link>
+                  {localStorage.getItem("userData") === "ADMIN" && (
+                    <Link
+                      to="/admin"
+                      className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Página de Administração
+                    </Link>
+                  )}
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Cadastro
+                  </Link>
+                </>
+              )}
             </div>
           )}
         </div>

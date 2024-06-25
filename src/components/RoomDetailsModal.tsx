@@ -82,7 +82,7 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
           <div className="grid grid-cols-2 gap-4 mb-6">
             {room.amenities.map((amenity, index) => (
               <div key={index} className="flex items-center">
-                {getAmenityIcon(amenity)} <span className="ml-2">{amenity}</span>
+                {getAmenityTextAndIcon(amenity).icon} <span className="ml-2">{getAmenityTextAndIcon(amenity).text}</span>
               </div>
             ))}
           </div>
@@ -119,27 +119,19 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
   );
 };
 
-const getAmenityIcon = (amenity: string) => {
-  switch (amenity) {
-    case "Wi-Fi":
-      return <FaWifi />;
-    case "TV":
-      return <FaTv />;
-    case "Ducha":
-      return <FaShower />;
-    case "Ar-condicionado":
-      return <FaSnowflake />;
-    case "Frigobar":
-      return <LuRefrigerator />;
-    case "Toalhas":
-      return <PiTowel />;
-    case "Cozinha":
-      return <PiForkKnifeFill />;
-    case "Banheira":
-      return <MdBathtub />;
-    default:
-      return null;
-  }
+const getAmenityTextAndIcon = (amenity: string) => {
+  const facilities: { [key: string]: { text: string; icon: React.ReactNode } } = {
+    wifi: { text: "Wi-Fi", icon: <FaWifi /> },
+    tv: { text: "TV", icon: <FaTv /> },
+    ducha: { text: "Ducha", icon: <FaShower /> },
+    arCondicionado: { text: "Ar Condicionado", icon: <FaSnowflake /> },
+    frigobar: { text: "Frigobar", icon: <LuRefrigerator /> },
+    toalhas: { text: "Toalhas", icon: <PiTowel /> },
+    cozinha: { text: "Cozinha", icon: <PiForkKnifeFill /> },
+    banheira: { text: "Banheira", icon: <MdBathtub /> },
+  };
+
+  return facilities[amenity];
 };
 
 export default RoomDetailsModal;
