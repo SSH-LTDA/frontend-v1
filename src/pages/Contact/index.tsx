@@ -23,8 +23,8 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto mt-10 px-4 py-8">
-      <div className="flex flex-wrap -mx-4">
+    <div className="container mx-auto mt-10 px-4 py-10">
+      <div className="flex flex-wrap -mx-4 pt-10">
         <div className="w-full md:w-1/2 px-4 mb-8">
           <h2 className="text-4xl font-bold mb-4">ESTAMOS AQUI POR VOCÊ</h2>
           <p className="text-lg mb-4">

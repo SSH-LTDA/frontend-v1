@@ -40,16 +40,12 @@ function Header() {
     return location.pathname;
   }, [location.pathname]);
 
-  const isContactUsScreen = useMemo(() => {
-    return pathname === "/contact-us";
-  }, [pathname]);
-
-  const isAdminScreen = useMemo(() => {
-    return pathname === "/admin";
+  const haveImage = useMemo(() => {
+    return pathname === "/" || pathname === "/facilities" || pathname === "/rooms";
   }, [pathname]);
 
   return (
-    <header className={`${isContactUsScreen || isAdminScreen ? "h-auto" : "h-[100vh]"} flex z-0 flex-wrap`}>
+    <header className={`${haveImage ? "h-[100vh]" : "h-auto"} flex z-0 flex-wrap`}>
       <nav className="w-full h-[15.5vh] bg-white flex justify-around items-center z-10 shadow-xl px-10">
         <img
           src="https://static.wixstatic.com/media/b87f83_9f4625b043a944daaf5fddefc7d73d0e~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_auto/logo-pousada-quinta-do-ypua.png"
@@ -114,15 +110,7 @@ function Header() {
           )}
         </div>
       </nav>
-      {isContactUsScreen ? (
-        <div className="h-[100px] bg-[#886023] w-full relative flex items-center justify-center font-bold text-white text-6xl">
-          Contate-nos
-        </div>
-      ) : isAdminScreen ? (
-        <div className="h-[100px] bg-[#886023] w-full relative flex items-center justify-center font-bold text-white text-6xl">
-          Tela de Administrador
-        </div>
-      ) : (
+      {haveImage && (
         <img
           src={Paths[pathname as keyof typeof Paths]}
           className="absolute z-[-2] top-0 left-0 h-[100vh] object-cover"

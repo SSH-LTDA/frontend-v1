@@ -22,15 +22,15 @@ function App() {
         <Route path="facilities" element={<Facilities />} />
         <Route path="rooms" element={<Rooms />} />
         <Route path="contact-us" element={<Contact />} />
+        <Route path="/user-info" element={<UserInfo />} />
         <Route path="admin" element={<Admin />} />
+        <Route path="admin/bookings" element={<Bookings />} />
+        <Route path="admin/rooms" element={<AdminRooms />} />
       </Route>
-      <Route path="admin/bookings" element={<Bookings />} />
-      <Route path="admin/rooms" element={<AdminRooms />} />
       <Route path="/reservation-form" element={<ReservationForm />} />
       <Route path="/payment" element={<PaymentForm />} />
       <Route path="/register" element={<RegisterForm />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/user-info" element={<UserInfo />} />
     </Routes>
   );
 }

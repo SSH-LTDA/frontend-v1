@@ -4,7 +4,7 @@ const UserInfo: React.FC = () => {
   const storedData = JSON.parse(localStorage.getItem('userData') || '{}');
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="flex items-center justify-center py-[10vh]">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Informações do Usuário</h2>
         <div className="flex justify-center mb-4">
