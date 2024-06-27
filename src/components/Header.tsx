@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { User, UserRole } from "../types/User";
 
 enum Paths {
   "/" = "https://static.wixstatic.com/media/b87f83_56923e1bbcc74419b614629e2930f9f8~mv2.jpg/v1/fill/w_1079,h_748,q_90/b87f83_56923e1bbcc74419b614629e2930f9f8~mv2.webp",
@@ -35,6 +36,7 @@ const menuLinks: MenuLink[] = [
 function Header() {
   const location = useLocation();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState<User>(JSON.parse(localStorage.getItem("userData")!) as User);
 
   const pathname = useMemo(() => {
     return location.pathname;
@@ -69,7 +71,7 @@ function Header() {
           />
           {isDropdownOpen && (
             <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border rounded shadow-lg">
-              {localStorage.getItem("userData") ? (
+              {userData ? (
                 <>
                   <Link
                     to="/user-info"
@@ -78,7 +80,7 @@ function Header() {
                   >
                     Perfil
                   </Link>
-                  {localStorage.getItem("userData") === "ADMIN" && (
+                  {userData.role === UserRole.Employee && (
                     <Link
                       to="/admin"
                       className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
