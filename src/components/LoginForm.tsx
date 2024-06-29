@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
+import { useService } from "../hooks/useService.ts";
+import useNotification from "../hooks/useNotification.ts";
+import login from "../services/Auth/login.ts";
 
 const loginSchema = z.object({
   email: z.string().email("Email inválido"),
@@ -12,7 +14,7 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 const LoginForm: React.FC = () => {
-  const navigate = useNavigate();
+  const notification = useNotification();
   const {
     register,
     handleSubmit,
@@ -21,14 +23,22 @@ const LoginForm: React.FC = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    const storedData = JSON.parse(localStorage.getItem("userData") || "{}");
-    if (storedData.email === data.email && storedData.password === data.password) {
-      navigate("/");
-    } else {
-      alert("Email ou senha incorretos");
-    }
-  };
+  const [isAuthenticating, authenticate] = useService(login, {
+    onData: (data) => {
+      notification("success", "Login realizado com sucesso!");
+      setTimeout(() => {
+        localStorage.setItem("user", JSON.stringify(data));
+        window.location.href = "/";
+      }, 4000);
+    },
+    onError: (error) => {
+      notification("error", error.message);
+    },
+  });
+
+  const onSubmit = useCallback((data: LoginFormData) => {
+    authenticate(data);
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -47,6 +57,7 @@ const LoginForm: React.FC = () => {
               {...register("email")}
               className="w-full p-2 border rounded"
               placeholder="Digite seu email"
+              disabled={isAuthenticating}
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
           </div>
@@ -57,10 +68,15 @@ const LoginForm: React.FC = () => {
               {...register("password")}
               className="w-full p-2 border rounded"
               placeholder="Digite sua senha"
+              disabled={isAuthenticating}
             />
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
-          <button type="submit" className="w-full bg-[#886023] text-white py-2 rounded hover:bg-[#64491f]">
+          <button
+            type="submit"
+            className="w-full bg-[#886023] text-white py-2 rounded hover:bg-[#64491f]"
+            disabled={isAuthenticating}
+          >
             Login
           </button>
         </form>
