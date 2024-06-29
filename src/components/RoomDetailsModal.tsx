@@ -82,7 +82,8 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
           <div className="grid grid-cols-2 gap-4 mb-6">
             {room.amenities.map((amenity, index) => (
               <div key={index} className="flex items-center">
-                {getAmenityTextAndIcon(amenity).icon} <span className="ml-2">{getAmenityTextAndIcon(amenity).text}</span>
+                {getAmenityTextAndIcon(amenity).icon}{" "}
+                <span className="ml-2">{getAmenityTextAndIcon(amenity).text}</span>
               </div>
             ))}
           </div>
