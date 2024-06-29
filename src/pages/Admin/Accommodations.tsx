@@ -14,7 +14,7 @@ const Accommodations: React.FC = () => {
 
   useEffect(() => {
     handleSetAccommodations();
-  }, [accommodations]);
+  }, []);
 
   return (
     <>
@@ -39,7 +39,7 @@ const Accommodations: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {accommodations ? (
+            {accommodations && accommodations.length > 0 ? (
               accommodations.map((accommodation) => (
                 <tr>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.id}</td>

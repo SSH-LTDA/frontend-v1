@@ -2,16 +2,18 @@ import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Booking } from "../../types/Booking";
+import getBookings from "../../services/getBookings";
 
 const Bookings: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
 
+  async function handleSetAccommodations() {
+    const bookings = await getBookings();
+    setBookings(bookings);
+  }
+
   useEffect(() => {
-    setBookings([
-      { id: "oveborer32", accommodationId: "3f03jvr903rv", clientId: "rionsgoirj853", date: "28/02/2024" },
-      { id: "f38459rvj3iocwel", accommodationId: "42894rjeitmrcd", clientId: "orijeiotjegr4", date: "14/06/2023" },
-      { id: "3589gejtifddcs", accommodationId: "3905vrjofied", clientId: "rio3j5g89u38vr", date: "05/12/2022" },
-    ]);
+    handleSetAccommodations();
   }, []);
 
   return (
@@ -36,20 +38,24 @@ const Bookings: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking) => (
-              <tr>
-                <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.id}</td>
-                <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.date}</td>
-                <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.clientId}</td>
-                <td className="border-collapse p-[10px] text-left border border-[rgb(160 160 160)]">
-                  {booking.accommodationId}
-                </td>
-                <td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center gap-1">
-                  <FaRegEdit size={17} onClick={() => alert("editar")} className="cursor-pointer" />
-                  <FaTrashAlt size={17} onClick={() => alert("deletar")} className="cursor-pointer" />
-                </td>
-              </tr>
-            ))}
+            {bookings && bookings.length > 0 ? (
+              bookings.map((booking) => (
+                <tr>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.id}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.date}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.clientId}</td>
+                  <td className="border-collapse p-[10px] text-left border border-[rgb(160 160 160)]">
+                    {booking.accommodationId}
+                  </td>
+                  <td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center gap-1">
+                    <FaRegEdit size={17} onClick={() => alert("editar")} className="cursor-pointer" />
+                    <FaTrashAlt size={17} onClick={() => alert("deletar")} className="cursor-pointer" />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <h4 className="p-3">Não foi possivel encontrar acomodações</h4>
+            )}
           </tbody>
         </table>
       </div>
