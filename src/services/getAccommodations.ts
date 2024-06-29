@@ -7,7 +7,7 @@ export default function getAccommodations(): Promise<Accommodation[]> {
       return response.data;
     },
     (error) => {
-      return error.response.status;
+      return error.response;
     }
   );
 }
