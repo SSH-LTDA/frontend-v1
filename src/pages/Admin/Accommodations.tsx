@@ -3,9 +3,15 @@ import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Accommodation } from "../../types/Accommodation";
 import getAccommodations from "../../services/getAccommodations";
+import deleteAccommodation from "../../services/deleteAccomodation";
+import DeleteModal from "../../components/DeleteModal";
 
 const Accommodations: React.FC = () => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>();
+  const [modalEditIsOpen, setModalEditIsOpen] = useState<boolean>(false);
+  const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState<boolean>(false);
+  const [editAccommodationId, setEditAccommodationId] = useState<string>("");
+  const [deleteAccommodationId, setDeleteAccommodationId] = useState<string>("");
 
   async function handleSetAccommodations() {
     const accommodations = await getAccommodations();
@@ -15,6 +21,23 @@ const Accommodations: React.FC = () => {
   useEffect(() => {
     handleSetAccommodations();
   }, []);
+
+  useEffect(() => {
+    if (editAccommodationId) {
+      setModalEditIsOpen(true);
+    }
+
+    if (deleteAccommodationId) {
+      setModalDeleteIsOpen(true);
+    }
+  }, [editAccommodationId, deleteAccommodationId]);
+
+  
+  function handleDeleteAccommodation(id: string) {
+    deleteAccommodation(id);
+    setModalDeleteIsOpen(false);
+    setDeleteAccommodationId("");
+  }
 
   return (
     <>
@@ -54,8 +77,16 @@ const Accommodations: React.FC = () => {
                     ))}
                   </td>
                   <td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center">
-                    <FaRegEdit size={15} onClick={() => alert("editar")} className="cursor-pointer" />
-                    <FaTrashAlt size={15} onClick={() => alert("deletar")} className="cursor-pointer" />
+                    <FaRegEdit
+                      size={17}
+                      onClick={() => setEditAccommodationId(accommodation.id)}
+                      className="cursor-pointer"
+                    />
+                    <FaTrashAlt
+                      size={17}
+                      onClick={() => setDeleteAccommodationId(accommodation.id)}
+                      className="cursor-pointer"
+                    />
                   </td>
                 </tr>
               ))
@@ -65,6 +96,18 @@ const Accommodations: React.FC = () => {
           </tbody>
         </table>
       </div>
+      {modalEditIsOpen && <h2>MODAL DE EDITAR</h2>}
+      {modalDeleteIsOpen && (
+        <DeleteModal
+          id={deleteAccommodationId}
+          deleteFunction={handleDeleteAccommodation}
+          cancelButton={() => {
+            setModalEditIsOpen(false);
+            setEditAccommodationId("");
+          }}
+          text="Tem certeza que deseja deletar essa acomodação?"
+        />
+      )}
     </>
   );
 };
