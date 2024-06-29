@@ -12,7 +12,7 @@ import RegisterForm from "./pages/Auth/register";
 import UserInfo from "./pages/User/UserProfile";
 import LoginPage from "./pages/Auth/login";
 import Bookings from "./pages/Admin/Bookings";
-import Accomodations from "./pages/Admin/Accomodations";
+import Accommodations from "./pages/Admin/Accommodations";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route path="/user-info" element={<UserInfo />} />
         <Route path="admin" element={<Admin />} />
         <Route path="admin/bookings" element={<Bookings />} />
-        <Route path="admin/rooms" element={<Accomodations />} />
+        <Route path="admin/rooms" element={<Accommodations />} />
       </Route>
       <Route path="/reservation-form" element={<ReservationForm />} />
       <Route path="/payment" element={<PaymentForm />} />

@@ -1,7 +1,7 @@
 import { api } from "../config/axios";
 
-export default function deleteAccomodation(id: string): Promise<number> {
-  return api.delete(`accomodation/${id}`).then(
+export default function deleteAccommodation(id: string): Promise<number> {
+  return api.delete(`accommodation/${id}`).then(
     (response) => {
       return response.status;
     },

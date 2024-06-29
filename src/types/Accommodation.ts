@@ -1,4 +1,4 @@
-export interface Accomodation {
+export interface Accommodation {
   id: string;
   type: string;
   size: number;

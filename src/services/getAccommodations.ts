@@ -1,8 +1,8 @@
 import { api } from "../config/axios";
 import { Accommodation } from "../types/Accommodation";
 
-export default function postAccommodation(body: Accommodation): Promise<Accommodation> {
-  return api.post(`accommodation`, body).then(
+export default function getAccommodations(): Promise<Accommodation[]> {
+  return api.get(`accommodations`).then(
     (response) => {
       return response.data;
     },
