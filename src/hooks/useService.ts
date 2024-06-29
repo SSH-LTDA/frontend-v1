@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { ApiError } from "../helpers/api-error";
+import { ApiError } from "../helpers/apiError";
 
 function useService<R>(
   service: () => Promise<R>,
