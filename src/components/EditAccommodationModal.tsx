@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useCallback, useEffect, useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import useNotification from "../hooks/useNotification";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
+import useNotification from "../hooks/useNotification";
 import { useService } from "../hooks/useService";
-import putAccommodation from "../services/putAccommodation";
 import { facilities } from "../pages/Facilities";
 import getAccommodationById from "../services/getAccommodationById";
+import putAccommodation from "../services/putAccommodation";
 import { Accommodation } from "../types/Accommodation";
 
 interface EditAccommodationModalProps {
@@ -173,8 +173,10 @@ const EditAccommodationModal: React.FC<EditAccommodationModalProps> = ({ accommo
 								className="w-full p-2 border rounded"
 								disabled={isEdittingAccommodation}
 							>
-								{facilities.map((facility) => (
-									<option value={facility.name}>{facility.name}</option>
+								{Object.entries(facilities).map(([key, value]) => (
+									<option key={key} value={key}>
+										{value.name}
+									</option>
 								))}
 							</select>
 							{errors.facilities && <p className="text-red-500 text-sm">{errors.facilities.message}</p>}

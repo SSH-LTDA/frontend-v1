@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import RoomCard from "../../components/RoomCard";
-import { useService } from "../../hooks/useService.ts";
-import useNotification from "../../hooks/useNotification.ts";
-import BookingService from "../../services/BookingService.ts";
 import { useAuth } from "../../contexts/AuthContext.tsx";
+import useNotification from "../../hooks/useNotification.ts";
+import { useService } from "../../hooks/useService.ts";
+import BookingService from "../../services/BookingService.ts";
 import getAccommodations from "../../services/getAccommodations.ts";
 import { Accommodation } from "../../types/Accommodation.ts";
 
@@ -65,9 +65,13 @@ const Rooms: React.FC = () => {
 				vista para o mar dos nossos quartos.
 			</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{accommodations && accommodations.length > 0 ? accommodations.map((room, index) => (
-					<RoomCard key={index} room={room} roomIndex={index} onCarouselChange={handleCarouselChange} />
-				)) : <span>Desculpe, não foi possível encontrar acomodações</span>}
+				{accommodations && accommodations.length > 0 ? (
+					accommodations.map((room, index) => (
+						<RoomCard key={index} room={room} roomIndex={index} onCarouselChange={handleCarouselChange} />
+					))
+				) : (
+					<span>Desculpe, não foi possível encontrar acomodações</span>
+				)}
 			</div>
 		</div>
 	);

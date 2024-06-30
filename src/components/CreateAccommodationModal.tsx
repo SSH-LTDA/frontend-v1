@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useCallback } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import useNotification from "../hooks/useNotification";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
+import { facilities } from "../constants/facilities";
+import useNotification from "../hooks/useNotification";
 import { useService } from "../hooks/useService";
 import postAccommodation from "../services/postAccomodation";
-import { facilities } from "../pages/Facilities";
 
 interface CreateAccommodationModalProps {
 	closeModal: () => void;
@@ -137,8 +137,10 @@ const CreateAccommodationModal: React.FC<CreateAccommodationModalProps> = ({ clo
 							className="w-full p-2 border rounded"
 							disabled={isCreatingAccommodation}
 						>
-							{facilities.map((facility) => (
-								<option value={facility.name}>{facility.name}</option>
+							{Object.entries(facilities).map(([key, value]) => (
+								<option key={key} value={key}>
+									{value.text}
+								</option>
 							))}
 						</select>
 						{errors.facilities && <p className="text-red-500 text-sm">{errors.facilities.message}</p>}

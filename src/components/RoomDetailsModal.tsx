@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaBed, FaCheck, FaShower, FaSnowflake, FaTimes, FaTv, FaUser, FaWifi } from "react-icons/fa";
-import { LuRefrigerator } from "react-icons/lu";
-import { MdBathtub } from "react-icons/md";
-import { PiForkKnifeFill, PiTowel } from "react-icons/pi";
+import { FaBed, FaCheck, FaTimes, FaUser } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useNavigate } from "react-router-dom";
+import { facilities } from "../constants/facilities.tsx";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import useNotification from "../hooks/useNotification.ts";
 import { useService } from "../hooks/useService.ts";
@@ -100,8 +98,7 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
 					<div className="grid grid-cols-2 gap-4 mb-6">
 						{room.facilities.map((amenity, index) => (
 							<div key={index} className="flex items-center">
-								{getAmenityTextAndIcon(amenity).icon}{" "}
-								<span className="ml-2">{getAmenityTextAndIcon(amenity).text}</span>
+								{getAmenityTextAndIcon(amenity)?.icon} <span className="ml-2">{facilities[amenity].text}</span>
 							</div>
 						))}
 					</div>
@@ -139,17 +136,6 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
 };
 
 const getAmenityTextAndIcon = (amenity: string) => {
-	const facilities: { [key: string]: { text: string; icon: React.ReactNode } } = {
-		wifi: { text: "Wi-Fi", icon: <FaWifi /> },
-		tv: { text: "TV", icon: <FaTv /> },
-		ducha: { text: "Ducha", icon: <FaShower /> },
-		arCondicionado: { text: "Ar Condicionado", icon: <FaSnowflake /> },
-		frigobar: { text: "Frigobar", icon: <LuRefrigerator /> },
-		toalhas: { text: "Toalhas", icon: <PiTowel /> },
-		cozinha: { text: "Cozinha", icon: <PiForkKnifeFill /> },
-		banheira: { text: "Banheira", icon: <MdBathtub /> },
-	};
-
 	return facilities[amenity];
 };
 

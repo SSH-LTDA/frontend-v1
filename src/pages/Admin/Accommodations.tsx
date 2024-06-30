@@ -82,14 +82,14 @@ const Accommodations: React.FC = () => {
 									<td className="border-collapse p-[10px] text-left border border-[rgb(160 160 160)]">
 										{accommodation.facilities.join(", ")}
 									</td>
-									<td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center">
+									<td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center gap-5">
 										<FaRegEdit
-											size={17}
+											size={20}
 											onClick={() => setEditAccommodationId(accommodation.id)}
 											className="cursor-pointer"
 										/>
 										<FaTrashAlt
-											size={17}
+											size={20}
 											onClick={() => setDeleteAccommodationId(accommodation.id)}
 											className="cursor-pointer"
 										/>
