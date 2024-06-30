@@ -1,13 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-import { useNavigate } from "react-router-dom";
 import { FaTimes, FaBed, FaUser, FaWifi, FaTv, FaShower, FaSnowflake, FaCheck } from "react-icons/fa";
 import { MdBathtub } from "react-icons/md";
 import { LuRefrigerator } from "react-icons/lu";
 import { PiForkKnifeFill, PiTowel } from "react-icons/pi";
+import { useService } from "../hooks/useService.ts";
+import generateCheckoutSession from "../services/Stripe/generateCheckoutSession.ts";
 
 interface RoomDetailsModalProps {
   room: {
@@ -27,7 +28,6 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
 
   const modalRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -43,16 +43,17 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
     };
   }, [onClose]);
 
-  const handleConfirm = () => {
-    navigate("/payment", {
-      state: {
-        room,
-        checkInDate,
-        checkOutDate,
-        image: room.images[0], // Enviando a primeira imagem da acomodação
-      },
-    });
-  };
+  const [, createCheckoutSession] = useService(generateCheckoutSession, {
+    onData: (data) => {
+      window.location.href = data.url;
+    },
+  });
+
+  const handleConfirm = useCallback(async () => {
+    if (room && checkInDate && checkOutDate) {
+      createCheckoutSession({ room, checkInDate, checkOutDate });
+    }
+  }, [room, checkInDate, checkOutDate]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
