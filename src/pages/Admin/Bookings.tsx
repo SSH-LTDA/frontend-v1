@@ -5,6 +5,7 @@ import { Booking } from "../../types/Booking";
 import getBookings from "../../services/getBookings";
 import deleteBooking from "../../services/deleteBooking";
 import DeleteModal from "../../components/DeleteModal";
+import dayjs from "dayjs";
 
 const Bookings: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -64,22 +65,16 @@ const Bookings: React.FC = () => {
               bookings.map((booking) => (
                 <tr>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.id}</td>
-                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.date}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">
+                    {dayjs(booking.checkInDate).format("DD-MM-YYYY")}
+                  </td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.clientId}</td>
                   <td className="border-collapse p-[10px] text-left border border-[rgb(160 160 160)]">
                     {booking.accommodationId}
                   </td>
                   <td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center gap-1">
-                  <FaRegEdit
-                      size={17}
-                      onClick={() => setEditBookingId(booking.id)}
-                      className="cursor-pointer"
-                    />
-                    <FaTrashAlt
-                      size={17}
-                      onClick={() => setDeleteBookingId(booking.id)}
-                      className="cursor-pointer"
-                    />
+                    <FaRegEdit size={17} onClick={() => setEditBookingId(booking.id)} className="cursor-pointer" />
+                    <FaTrashAlt size={17} onClick={() => setDeleteBookingId(booking.id)} className="cursor-pointer" />
                   </td>
                 </tr>
               ))

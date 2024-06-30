@@ -16,7 +16,9 @@ const HomeCard: React.FC<HomeCardProps> = ({ title, description, image, isRevers
       <div className="w-[48%] my-auto">
         <h3 className="text-5xl font-bold mb-2">{title}</h3>
         <p className="text-lg my-5">{description}</p>
-        <button className="bg-[#E0B973] text-white text-lg font-semibold px-10 py-2 rounded-lg">EXPLORAR</button>
+        <a className="bg-[#E0B973] text-white text-lg font-semibold px-10 py-2 rounded-lg" href="/rooms">
+          EXPLORAR
+        </a>
       </div>
       <div className="w-[48%]">
         <img src={image} alt="" className="w-[100%] h-[100%]" />
