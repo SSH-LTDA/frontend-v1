@@ -1,13 +1,8 @@
-import { api } from "../config/axios";
 import { Accommodation } from "../types/Accommodation";
+import { request } from "../helpers/request.ts";
 
-export default function getAccommodationById(id: string): Promise<Accommodation> {
-	return api.get(`accommodations/${id}`).then(
-		(response) => {
-			return response.data;
-		},
-		(error) => {
-			return error.response.status;
-		}
-	);
+function getAccommodationById(id: string): Promise<Accommodation> {
+	return request({ method: "GET", url: `accommodations/${id}` });
 }
+
+export default getAccommodationById;
