@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
-import { IoIosAddCircleOutline } from "react-icons/io";
 import { Booking } from "../../types/Booking";
 import getBookings from "../../services/getBookings";
 import deleteBooking from "../../services/deleteBooking";
 import DeleteModal from "../../components/DeleteModal";
 import dayjs from "dayjs";
+import EditAccommodationModal from "../../components/EditBookingModal";
 
 const Bookings: React.FC = () => {
 	const [bookings, setBookings] = useState<Booking[]>([]);
@@ -52,12 +52,7 @@ const Bookings: React.FC = () => {
 							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Data</th>
 							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Id do Cliente</th>
 							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Id da Acomodação</th>
-							<th
-								className="border-collapse p-[10px] border border-[rgb(160 160 160)] flex items-center gap-2 cursor-pointer"
-								onClick={() => alert("adicionar")}
-							>
-								Adicionar <IoIosAddCircleOutline size={30} />
-							</th>
+							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Opções</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,7 +79,15 @@ const Bookings: React.FC = () => {
 					</tbody>
 				</table>
 			</div>
-			{modalEditIsOpen && <h2>MODAL DE EDITAR</h2>}
+			{modalEditIsOpen && (
+				<EditAccommodationModal
+					bookingId={editBookingId}
+					closeModal={() => {
+						setModalEditIsOpen(false);
+						setEditBookingId("");
+					}}
+				/>
+			)}
 			{modalDeleteIsOpen && (
 				<DeleteModal
 					id={deleteBookingId}

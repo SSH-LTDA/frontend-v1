@@ -1,13 +1,8 @@
-import { api } from "../config/axios";
+import { request } from "../helpers/request.ts";
 import { Booking } from "../types/Booking";
 
-export default function putBooking(id: string, body: Booking): Promise<Booking> {
-	return api.put(`bookings/${id}`, body).then(
-		(response) => {
-			return response.data;
-		},
-		(error) => {
-			return error.response.status;
-		}
-	);
+function putBooking({ id, data }: { id: string; data: Booking }): Promise<Booking> {
+	return request({ method: "PUT", url: `bookings/${id}`, data });
 }
+
+export default putBooking;
