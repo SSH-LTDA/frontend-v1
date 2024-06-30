@@ -2,10 +2,14 @@ import { request } from "../../helpers/request.ts";
 
 interface CreateCheckoutSession {
 	room: {
-		title: string;
-		description: string;
-		images: string[];
+		id: string;
+		type: string;
+		beds: number;
 		price: number;
+		photos: string[];
+		description: string;
+		facilities: string[];
+		guestCapacity: number;
 	};
 	checkInDate: Date;
 	checkOutDate: Date;
