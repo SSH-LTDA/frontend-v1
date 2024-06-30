@@ -5,10 +5,11 @@ import { Accommodation } from "../../types/Accommodation";
 import getAccommodations from "../../services/getAccommodations";
 import deleteAccommodation from "../../services/deleteAccomodation";
 import DeleteModal from "../../components/DeleteModal";
-
+import CreateAccommodationModal from "../../components/CreateAccommodationModal";
 
 const Accommodations: React.FC = () => {
   const [accommodations, setAccommodations] = useState<Accommodation[]>();
+  const [modalCreateIsOpen, setModalCreateIsOpen] = useState<boolean>(false);
   const [modalEditIsOpen, setModalEditIsOpen] = useState<boolean>(false);
   const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState<boolean>(false);
   const [editAccommodationId, setEditAccommodationId] = useState<string>("");
@@ -113,7 +114,7 @@ const Accommodations: React.FC = () => {
         description: "Descrição do Estacionamento",
         facilities: ["wifi", "ducha"],
       },
-    ])
+    ]);
   }, []);
 
   useEffect(() => {
@@ -126,7 +127,6 @@ const Accommodations: React.FC = () => {
     }
   }, [editAccommodationId, deleteAccommodationId]);
 
-  
   function handleDeleteAccommodation(id: string) {
     deleteAccommodation(id);
     setModalDeleteIsOpen(false);
@@ -151,7 +151,7 @@ const Accommodations: React.FC = () => {
               <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Facilidades</th>
               <th
                 className="border-collapse p-[10px] border border-[rgb(160 160 160)] flex items-center gap-2 cursor-pointer"
-                onClick={() => alert("adicionar")}
+                onClick={() => setModalCreateIsOpen(true)}
               >
                 Adicionar <IoIosAddCircleOutline size={30} />
               </th>
@@ -163,16 +163,16 @@ const Accommodations: React.FC = () => {
                 <tr>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.id}</td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.type}</td>
-                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.description}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">
+                    {accommodation.description}
+                  </td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.beds}</td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.price}</td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">
                     {accommodation.guestCapacity}
                   </td>
                   <td className="border-collapse p-[10px] text-left border border-[rgb(160 160 160)]">
-                    {accommodation.facilities.map((facility) => (
-                      <span>{facility}</span>
-                    ))}
+                    {accommodation.facilities.join(", ")}
                   </td>
                   <td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center">
                     <FaRegEdit
@@ -194,6 +194,7 @@ const Accommodations: React.FC = () => {
           </tbody>
         </table>
       </div>
+      {modalCreateIsOpen && <CreateAccommodationModal closeModal={() => setModalCreateIsOpen(false)} />}
       {modalEditIsOpen && <h2>MODAL DE EDITAR</h2>}
       {modalDeleteIsOpen && (
         <DeleteModal

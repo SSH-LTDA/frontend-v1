@@ -14,7 +14,7 @@ import toalhaImage from "../../assets/toalha.jpg";
 import cozinhaImage from "../../assets/cozinha.jpg";
 import banheiraImage from "../../assets/banheira.jpg";
 
-const facilities = [
+export const facilities = [
   {
     name: "Wi-Fi",
     icon: <FaWifi />,
