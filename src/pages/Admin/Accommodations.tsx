@@ -144,7 +144,9 @@ const Accommodations: React.FC = () => {
             <tr>
               <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Id</th>
               <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Tipo</th>
-              <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Tamanho</th>
+              <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Descrição</th>
+              <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Camas</th>
+              <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Preço</th>
               <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Capacidade</th>
               <th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Facilidades</th>
               <th
@@ -161,7 +163,9 @@ const Accommodations: React.FC = () => {
                 <tr>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.id}</td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.type}</td>
-                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.size}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.description}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.beds}</td>
+                  <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{accommodation.price}</td>
                   <td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">
                     {accommodation.guestCapacity}
                   </td>
