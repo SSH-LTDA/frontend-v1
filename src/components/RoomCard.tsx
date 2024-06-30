@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { FaInfoCircle } from "react-icons/fa";
+import { FaBrazilianRealSign } from "react-icons/fa6";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { FaInfoCircle, FaDollarSign } from "react-icons/fa";
 import RoomDetailsModal from "./RoomDetailsModal";
 
 interface Room {
@@ -51,10 +52,10 @@ const RoomCard: React.FC<RoomCardProps> = ({ room, roomIndex, onCarouselChange }
 							<FaInfoCircle className="mr-1" />
 							Ver detalhes
 						</button>
-						<button className="flex items-center bg-[#886023] text-white px-2 py-1 rounded hover:bg-[#64491f]">
-							<FaDollarSign className="mr-1" />
+						<span className="flex items-center bg-[#886023] text-white px-2 py-1 rounded">
+							<FaBrazilianRealSign className="mr-1" />
 							{room.price} por noite
-						</button>
+						</span>
 					</div>
 				</div>
 			</div>
