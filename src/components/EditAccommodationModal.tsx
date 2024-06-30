@@ -4,7 +4,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import useNotification from "../hooks/useNotification";
 import { z } from "zod";
 import { useService } from "../hooks/useService";
-import postAccommodation from "../services/postAccomodation";
+import putAccommodation from "../services/putAccommodation";
 import { facilities } from "../pages/Facilities";
 import getAccommodationById from "../services/getAccommodationById";
 import { Accommodation } from "../types/Accommodation";
@@ -15,6 +15,7 @@ interface EditAccommodationModalProps {
 }
 
 const registerSchema = z.object({
+	id: z.string().min(1, "ID inválido"),
 	type: z.string().min(1, "Nome inválido"),
 	beds: z.coerce.number().min(1, "Quantidade de camas inválida"),
 	price: z.coerce.number().min(1, "Preço inválido"),
@@ -56,9 +57,9 @@ const EditAccommodationModal: React.FC<EditAccommodationModalProps> = ({ accommo
 		});
 	}
 
-	const [isEdittingAccommodation, doEditAccommodation] = useService(postAccommodation, {
+	const [isEdittingAccommodation, doEditAccommodation] = useService(putAccommodation, {
 		onData: () => {
-			notification("success", "A acomodação foi cadastrada com sucesso");
+			notification("success", "A acomodação foi editada com sucesso");
 			setTimeout(() => closeModal(), 2500);
 		},
 		onError: (error) => {
@@ -82,8 +83,7 @@ const EditAccommodationModal: React.FC<EditAccommodationModalProps> = ({ accommo
 	const onSubmit = useCallback((data: EditAccommodationFormData) => {
 		if (data) {
 			const photos = data.photos.map((photo) => photo.image);
-			console.log(data);
-			doEditAccommodation({ ...data, photos });
+			doEditAccommodation({ id: accommodationId, data: { ...data, photos } });
 		}
 	}, []);
 
@@ -94,6 +94,16 @@ const EditAccommodationModal: React.FC<EditAccommodationModalProps> = ({ accommo
 					<span>Carregando...</span>
 				) : defaultAccommodation ? (
 					<form onSubmit={handleSubmit(onSubmit)}>
+						<div className="mb-4">
+							<label className="block text-gray-700">Id</label>
+							<input
+								type="text"
+								{...register("id")}
+								defaultValue={defaultAccommodation.id}
+								className="w-full p-2 border rounded"
+								disabled
+							/>
+						</div>
 						<div className="mb-4">
 							<label className="block text-gray-700">Nome da Acomodação</label>
 							<input

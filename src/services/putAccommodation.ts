@@ -1,13 +1,9 @@
-import { api } from "../config/axios";
-import { Accommodation } from "../types/Accommodation";
+import { Accommodation } from "../types/Accommodation.ts";
+import { request } from "../helpers/request.ts";
 
-export default function putAccommodation(id: string, body: Accommodation): Promise<Accommodation> {
-	return api.put(`accommodations/${id}`, body).then(
-		(response) => {
-			return response.data;
-		},
-		(error) => {
-			return error.response.status;
-		}
-	);
+async function putAccommodation({id, data}: {id: string, data: Accommodation}): Promise<Accommodation> {
+	return request({ method: "PUT", url: `accommodations/${id}`, data });
 }
+
+export default putAccommodation;
+
