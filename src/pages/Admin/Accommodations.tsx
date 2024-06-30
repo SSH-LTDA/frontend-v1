@@ -15,17 +15,7 @@ const Accommodations: React.FC = () => {
 	const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState<boolean>(false);
 	const [editAccommodationId, setEditAccommodationId] = useState<string>("");
 	const [deleteAccommodationId, setDeleteAccommodationId] = useState<string>("");
-	const [accommodations, setAccommodations] = useState<Accommodation[]>();
-	const [modalCreateIsOpen, setModalCreateIsOpen] = useState<boolean>(false);
-	const [modalEditIsOpen, setModalEditIsOpen] = useState<boolean>(false);
-	const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState<boolean>(false);
-	const [editAccommodationId, setEditAccommodationId] = useState<string>("");
-	const [deleteAccommodationId, setDeleteAccommodationId] = useState<string>("");
 
-	async function handleSetAccommodations() {
-		const accommodations = await getAccommodations();
-		setAccommodations(accommodations);
-	}
 	async function handleSetAccommodations() {
 		const accommodations = await getAccommodations();
 		setAccommodations(accommodations);
@@ -39,25 +29,12 @@ const Accommodations: React.FC = () => {
 		if (editAccommodationId) {
 			setModalEditIsOpen(true);
 		}
-	useEffect(() => {
-		if (editAccommodationId) {
-			setModalEditIsOpen(true);
-		}
 
 		if (deleteAccommodationId) {
 			setModalDeleteIsOpen(true);
 		}
 	}, [editAccommodationId, deleteAccommodationId]);
-		if (deleteAccommodationId) {
-			setModalDeleteIsOpen(true);
-		}
-	}, [editAccommodationId, deleteAccommodationId]);
 
-	function handleDeleteAccommodation(id: string) {
-		deleteAccommodation(id);
-		setModalDeleteIsOpen(false);
-		setDeleteAccommodationId("");
-	}
 	function handleDeleteAccommodation(id: string) {
 		deleteAccommodation(id);
 		setModalDeleteIsOpen(false);
