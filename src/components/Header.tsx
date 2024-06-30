@@ -35,7 +35,7 @@ const menuLinks: MenuLink[] = [
 ];
 
 function Header() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -90,6 +90,12 @@ function Header() {
                       Página de Administração
                     </Link>
                   )}
+                  <span
+                    className="block px-4 py-2 text-gray-800 hover:bg-[#f8f4ec] hover:text-[#64491f] transition-colors"
+                    onClick={logout}
+                  >
+                    Sair
+                  </span>
                 </>
               ) : (
                 <>
