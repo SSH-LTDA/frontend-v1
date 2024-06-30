@@ -95,8 +95,8 @@ const Bookings: React.FC = () => {
           id={deleteBookingId}
           deleteFunction={handleDeleteBooking}
           cancelButton={() => {
-            setModalEditIsOpen(false);
-            setEditBookingId("");
+            setModalDeleteIsOpen(false);
+            setDeleteBookingId("");
           }}
           text="Tem certeza que deseja deletar essa acomodação?"
         />
