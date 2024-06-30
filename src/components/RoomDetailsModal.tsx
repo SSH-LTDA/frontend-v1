@@ -1,12 +1,15 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaBed, FaCheck, FaShower, FaSnowflake, FaTimes, FaTv, FaUser, FaWifi } from "react-icons/fa";
+import { LuRefrigerator } from "react-icons/lu";
+import { MdBathtub } from "react-icons/md";
+import { PiForkKnifeFill, PiTowel } from "react-icons/pi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import { FaTimes, FaBed, FaUser, FaWifi, FaTv, FaShower, FaSnowflake, FaCheck } from "react-icons/fa";
-import { MdBathtub } from "react-icons/md";
-import { LuRefrigerator } from "react-icons/lu";
-import { PiForkKnifeFill, PiTowel } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext.tsx";
+import useNotification from "../hooks/useNotification.ts";
 import { useService } from "../hooks/useService.ts";
 import generateCheckoutSession from "../services/Stripe/generateCheckoutSession.ts";
 
@@ -24,6 +27,10 @@ interface RoomDetailsModalProps {
 }
 
 const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) => {
+	const { user } = useAuth();
+	const notification = useNotification();
+	const navigate = useNavigate();
+
 	const [checkInDate, setCheckInDate] = useState<Date | null>(null);
 	const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
 
@@ -50,10 +57,19 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
 	});
 
 	const handleConfirm = useCallback(async () => {
-		if (room && checkInDate && checkOutDate) {
-			createCheckoutSession({ room, checkInDate, checkOutDate });
+		if (!user) {
+			notification("error", "Você deve ter um usuário logado", 1000);
+			setTimeout(() => navigate("/register"), 1000);
+			return;
 		}
-	}, [room, checkInDate, checkOutDate]);
+
+		if (!room || !checkInDate || !checkOutDate) {
+			notification("error", "Preencha todas as informações");
+			return;
+		}
+
+		createCheckoutSession({ room, checkInDate, checkOutDate });
+	}, [room, checkInDate, checkOutDate, user]);
 
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
