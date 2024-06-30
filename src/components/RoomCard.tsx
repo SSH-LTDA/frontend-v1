@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { FaInfoCircle, FaDollarSign } from 'react-icons/fa';
-import RoomDetailsModal from './RoomDetailsModal';
+import React, { useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { FaInfoCircle, FaDollarSign } from "react-icons/fa";
+import RoomDetailsModal from "./RoomDetailsModal";
 
 interface Room {
   title: string;
@@ -44,7 +44,10 @@ const RoomCard: React.FC<RoomCardProps> = ({ room, roomIndex, onCarouselChange }
         <div className="p-4">
           <h2 className="text-lg font-bold mb-2">{room.title}</h2>
           <div className="flex justify-between">
-            <button className="flex items-center bg-gray-200 px-3 py-1 rounded hover:bg-gray-300" onClick={handleViewDetails}>
+            <button
+              className="flex items-center bg-gray-200 px-3 py-1 rounded hover:bg-gray-300"
+              onClick={handleViewDetails}
+            >
               <FaInfoCircle className="mr-1" />
               Ver detalhes
             </button>
