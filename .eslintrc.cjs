@@ -11,6 +11,7 @@ module.exports = {
   plugins: ['react', 'react-refresh', "prettier"],
   rules: {
     'prettier/prettier': 'error',
+    quotes: ["error", "double"],
     'import/prefer-default-export': 'off',
     'jsx-quotes': ['error', 'prefer-double'],
     'react-refresh/only-export-components': [
