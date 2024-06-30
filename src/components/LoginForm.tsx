@@ -1,10 +1,11 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useService } from "../hooks/useService.ts";
 import useNotification from "../hooks/useNotification.ts";
+import { useService } from "../hooks/useService.ts";
 import login from "../services/Auth/login.ts";
+import { Link } from "react-router-dom";
 
 const loginSchema = z.object({
 	email: z.string().email("Email inválido"),
@@ -80,6 +81,12 @@ const LoginForm: React.FC = () => {
 						Login
 					</button>
 				</form>
+				<p className="pt-3 text-center">
+					Ainda não possui uma conta?{" "}
+					<Link to={"/register"} className="text-[#64491f] font-semibold">
+						Criar conta
+					</Link>
+				</p>
 			</div>
 		</div>
 	);
