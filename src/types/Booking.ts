@@ -1,6 +1,7 @@
 export interface Booking {
   id: string;
-  date: string;
+  checkInDate: Date;
+  checkOutDate: Date;
   clientId: string;
   accommodationId: string;
 }
