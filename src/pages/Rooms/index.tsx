@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import dayjs from "dayjs";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
 import RoomCard from "../../components/RoomCard";
+import { useService } from "../../hooks/useService.ts";
+import useNotification from "../../hooks/useNotification.ts";
+import BookingService from "../../services/BookingService.ts";
+import { useAuth } from "../../contexts/AuthContext.tsx";
 
 const rooms = [
   {
+    id: "844b9b24-cdf9-4cad-b7fc-1126092bd50b",
     title: "Domo",
     images: [
       "https://static.wixstatic.com/media/b87f83_0db328063a8c4b4ea1bb3dff437e8e46~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_0db328063a8c4b4ea1bb3dff437e8e46~mv2.jpeg",
@@ -17,6 +24,7 @@ const rooms = [
     amenities: ["wifi", "tv", "ducha", "arCondicionado", "toalhas", "frigobar", "cozinha"],
   },
   {
+    id: 2,
     title: "Charrua (Bus)",
     images: [
       "https://static.wixstatic.com/media/b87f83_5580c08771c841089ccc440a82c2f298~mv2.jpeg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_5580c08771c841089ccc440a82c2f298~mv2.jpeg",
@@ -31,6 +39,7 @@ const rooms = [
     amenities: ["wifi", "tv", "arCondicionado", "ducha", "banheira", "cozinha", "toalhas"],
   },
   {
+    id: 3,
     title: "Suíte Com Cozinha",
     images: [
       "https://static.wixstatic.com/media/b87f83_bfc66e6435f34c23bfd60e2fccb3d499~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_bfc66e6435f34c23bfd60e2fccb3d499~mv2.jpg",
@@ -45,6 +54,7 @@ const rooms = [
     amenities: ["wifi", "tv", "cozinha", "arCondicionado", "toalhas"],
   },
   {
+    id: 4,
     title: "Chalé Família",
     images: [
       "https://static.wixstatic.com/media/b87f83_d943676e56f24781b4aad20256b75eef~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_d943676e56f24781b4aad20256b75eef~mv2.jpg",
@@ -59,6 +69,7 @@ const rooms = [
     amenities: ["wifi", "tv", "arCondicionado", "cozinha", "toalhas"],
   },
   {
+    id: 5,
     title: "Cabana",
     images: [
       "https://static.wixstatic.com/media/b87f83_23a56936773e4f7f812d0543c078138c~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_23a56936773e4f7f812d0543c078138c~mv2.jpg",
@@ -73,6 +84,7 @@ const rooms = [
     amenities: ["wifi", "arCondicionado", "tv", "toalhas", "cozinha"],
   },
   {
+    id: 5,
     title: "Estacionamento Para Overlanders",
     images: [
       "https://static.wixstatic.com/media/b87f83_f4b318355c704575a4a6917c1a2f7401~mv2.jpg/v1/fill/w_649,h_408,q_85,usm_0.66_1.00_0.01/b87f83_f4b318355c704575a4a6917c1a2f7401~mv2.jpg",
@@ -89,13 +101,38 @@ const rooms = [
 ];
 
 const Rooms: React.FC = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const notification = useNotification();
+  const [searchParams] = useSearchParams();
   const [currentRoomIndex, setCurrentRoomIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleCarouselChange = (roomIndex: number, imageIndex: number) => {
+  const handleCarouselChange = useCallback((roomIndex: number, imageIndex: number) => {
     setCurrentRoomIndex(roomIndex);
     setCurrentImageIndex(imageIndex);
-  };
+  }, []);
+
+  const [, doBooking] = useService(BookingService.post, {
+    onData: () => {
+      notification("success", "Reserva realizada com sucesso!");
+      navigate("/rooms", { replace: true });
+    },
+    onError: (error) => {
+      notification("error", error.message);
+    },
+  });
+
+  useEffect(() => {
+    if (user && searchParams.get("roomId") && searchParams.get("checkInDate") && searchParams.get("checkOutDate")) {
+      doBooking({
+        accommodationId: searchParams.get("roomId") as string,
+        checkInDate: dayjs(searchParams.get("checkInDate") as string).toDate(),
+        checkOutDate: dayjs(searchParams.get("checkOutDate") as string).toDate(),
+        clientId: user.id,
+      });
+    }
+  }, [user]);
 
   console.log(currentRoomIndex, currentImageIndex);
 
