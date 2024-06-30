@@ -4,13 +4,13 @@ import Header from "../../components/Header.tsx";
 import Footer from "../../components/Footer.tsx";
 
 function Index() {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Header />
+			<Outlet />
+			<Footer />
+		</>
+	);
 }
 
 export default Index;
