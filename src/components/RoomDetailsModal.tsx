@@ -15,13 +15,14 @@ import generateCheckoutSession from "../services/Stripe/generateCheckoutSession.
 
 interface RoomDetailsModalProps {
 	room: {
-		title: string;
-		images: string[];
-		price: number;
+		id: string;
+		type: string;
 		beds: number;
-		guests: number;
+		price: number;
+		photos: string[];
 		description: string;
-		amenities: string[];
+		facilities: string[];
+		guestCapacity: number;
 	};
 	onClose: () => void;
 }
@@ -75,15 +76,15 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
 		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
 			<div ref={modalRef} className="bg-white h-3/4 rounded-lg p-8 w-full max-w-3xl max-h-full overflow-y-auto">
 				<div className="flex justify-between items-center mb-4">
-					<h2 className="text-2xl font-bold">{room.title}</h2>
+					<h2 className="text-2xl font-bold">{room.type}</h2>
 					<button onClick={onClose} className="text-gray-600 hover:text-gray-900">
 						<FaTimes size={24} />
 					</button>
 				</div>
 				<Carousel showThumbs={false}>
-					{room.images.map((src, idx) => (
+					{room.photos.map((src, idx) => (
 						<div key={idx}>
-							<img src={src} alt={room.title} className="w-full h-auto" />
+							<img src={src} alt={room.type} className="w-full h-auto" />
 						</div>
 					))}
 				</Carousel>
@@ -93,11 +94,11 @@ const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({ room, onClose }) =>
 						<FaBed className="mr-2" /> {room.beds} {room.beds > 1 ? "Camas" : "Cama"}
 					</div>
 					<div className="flex items-center mb-4">
-						<FaUser className="mr-2" /> Acomoda {room.guests} pessoas
+						<FaUser className="mr-2" /> Acomoda {room.guestCapacity} pessoas
 					</div>
 					<h3 className="text-lg font-semibold mb-2">Esta acomodação contém:</h3>
 					<div className="grid grid-cols-2 gap-4 mb-6">
-						{room.amenities.map((amenity, index) => (
+						{room.facilities.map((amenity, index) => (
 							<div key={index} className="flex items-center">
 								{getAmenityTextAndIcon(amenity).icon}{" "}
 								<span className="ml-2">{getAmenityTextAndIcon(amenity).text}</span>

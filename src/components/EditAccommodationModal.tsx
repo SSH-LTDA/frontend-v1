@@ -214,7 +214,7 @@ const EditAccommodationModal: React.FC<EditAccommodationModalProps> = ({ accommo
 								disabled={isEdittingAccommodation}
 								type="submit"
 							>
-								Criar Acomodação
+								Editar Acomodação
 							</button>
 						</div>
 					</form>
