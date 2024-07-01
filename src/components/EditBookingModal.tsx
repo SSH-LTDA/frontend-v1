@@ -139,7 +139,7 @@ const EditBookingModal: React.FC<EditBookingModalProps> = ({ bookingId, closeMod
 								disabled={isEdittingBooking}
 								type="submit"
 							>
-								Editar Reserva 
+								Editar Reserva
 							</button>
 						</div>
 					</form>
