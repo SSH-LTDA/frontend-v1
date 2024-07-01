@@ -1,11 +1,11 @@
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
-import { Booking } from "../../types/Booking";
-import getBookings from "../../services/getBookings";
-import deleteBooking from "../../services/deleteBooking";
 import DeleteModal from "../../components/DeleteModal";
-import dayjs from "dayjs";
 import EditAccommodationModal from "../../components/EditBookingModal";
+import deleteBooking from "../../services/deleteBooking";
+import getBookings from "../../services/getBookings";
+import { Booking } from "../../types/Booking";
 
 const Bookings: React.FC = () => {
 	const [bookings, setBookings] = useState<Booking[]>([]);
@@ -39,6 +39,11 @@ const Bookings: React.FC = () => {
 		setDeleteBookingId("");
 	}
 
+	useEffect(() => {
+		console.log(bookings[0]?.client);
+		console.log(bookings[0]?.accommodation);
+	}, [bookings]);
+
 	return (
 		<>
 			<div className="h-[100px] py-20 bg-[#886023] w-full relative flex items-center justify-center font-bold text-white text-6xl">
@@ -49,9 +54,10 @@ const Bookings: React.FC = () => {
 					<thead>
 						<tr>
 							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Id</th>
-							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Data</th>
-							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Id do Cliente</th>
-							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Id da Acomodação</th>
+							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Check-in</th>
+							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Check-out</th>
+							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">CPF do cliente</th>
+							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Nome da acomodação</th>
 							<th className="border-collapse p-[10px] border border-[rgb(160 160 160)]">Opções</th>
 						</tr>
 					</thead>
@@ -61,11 +67,14 @@ const Bookings: React.FC = () => {
 								<tr>
 									<td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.id}</td>
 									<td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">
-										{dayjs(booking.checkInDate).format("DD-MM-YYYY")}
+										{dayjs(booking.checkInDate).format("DD/MM/YYYY")}
 									</td>
-									<td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.clientId}</td>
+									<td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">
+										{dayjs(booking.checkOutDate).format("DD/MM/YYYY")}
+									</td>
+									<td className="border-collapse p-[10px] border border-[rgb(160 160 160)]">{booking.client?.cpf}</td>
 									<td className="border-collapse p-[10px] text-left border border-[rgb(160 160 160)]">
-										{booking.accommodationId}
+										{booking.accommodation?.type}
 									</td>
 									<td className="border-collapse p-[10px] border-t border-[rgb(160 160 160)] flex items-center justify-center gap-1">
 										<FaRegEdit size={17} onClick={() => setEditBookingId(booking.id)} className="cursor-pointer" />
